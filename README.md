@@ -14,13 +14,13 @@ Python | Flask | RESTful APIs | Git
 ### Steps
 1. Clone the repo
 ```bash
-   git clone https://github.com/YOUR_USERNAME/task-api.git
-   cd task-api
+   git clone https://github.com/EventHorizon33/Task-Management-Rest-API.git
+   cd Task-Management-Rest-API
 ```
 2. Create and activate virtual environment
 ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
+   python -m venv venv
+   venv\Scripts\activate
 ```
 3. Install dependencies
 ```bash
@@ -30,6 +30,7 @@ Python | Flask | RESTful APIs | Git
 ```bash
    python app.py
 ```
+5. Server runs on `http://localhost:5001`
 
 ## API Endpoints
 
@@ -37,8 +38,8 @@ Python | Flask | RESTful APIs | Git
 |--------|----------|-------------|-------------|
 | GET | /tasks | Fetch all tasks | 200 |
 | POST | /tasks | Create a new task | 201 |
-| PUT | /tasks/<id> | Update a task | 200 |
-| DELETE | /tasks/<id> | Delete a task | 204 |
+| PUT | /tasks/\<id\> | Update a task | 200 |
+| DELETE | /tasks/\<id\> | Delete a task | 204 |
 
 ## Request & Response Examples
 
@@ -48,9 +49,7 @@ curl http://localhost:5001/tasks
 ```
 Response:
 ```json
-[
-  { "id": 1, "title": "Buy groceries", "description": "", "done": false }
-]
+[]
 ```
 
 ### POST /tasks
@@ -61,10 +60,15 @@ curl -X POST http://localhost:5001/tasks \
 ```
 Response:
 ```json
-{ "id": 1, "title": "Buy groceries", "description": "Milk and eggs", "done": false }
+{
+  "id": 1,
+  "title": "Buy groceries",
+  "description": "Milk and eggs",
+  "done": false
+}
 ```
 
-### PUT /tasks/<id>
+### PUT /tasks/1
 ```bash
 curl -X PUT http://localhost:5001/tasks/1 \
   -H "Content-Type: application/json" \
@@ -72,10 +76,15 @@ curl -X PUT http://localhost:5001/tasks/1 \
 ```
 Response:
 ```json
-{ "id": 1, "title": "Buy groceries", "description": "Milk and eggs", "done": true }
+{
+  "id": 1,
+  "title": "Buy groceries",
+  "description": "Milk and eggs",
+  "done": true
+}
 ```
 
-### DELETE /tasks/<id>
+### DELETE /tasks/1
 ```bash
 curl -X DELETE http://localhost:5001/tasks/1
 ```
@@ -90,3 +99,6 @@ task-api/
 ├── README.md
 └── .gitignore
 ```
+
+## Notes
+- Tasks are stored in memory and will reset when the server restarts.
